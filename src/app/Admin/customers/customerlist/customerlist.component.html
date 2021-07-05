@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Search</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <label class="col-md-1 col-form-label">Select Date</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Select Date</p> -->
+                    <input class="form-control" placeholder="{{model}}" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        (click)="d.toggle()">
+                    <!-- <input type="text" class="form-control datepicker" value="10/05/2018"> -->
+                </div>
+                <label class="col-md-1 col-form-label">User Name</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Tracking number</p> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter User Name">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary btn-round" style="margin-top: -3px;">
+                        <i class="nc-icon nc-zoom-split" title="Search">Search</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Customer Review List</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                User Name
+                            </th>
+                            <th>User Email
+                            </th>
+                            <th>
+                                Date Of Birth
+                            </th>
+                            <th>
+                                Contact No
+                            </th>
+                            <!-- <th class="text-right">
+                                Action
+                            </th> -->
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let cl of customerlist;let i=index">
+                        <tr  >
+                            <td> {{i+1}}</td>
+                            <td>{{cl.firstname}} {{cl.lastname}}</td>
+                            <td>{{cl.email}}</td>
+                            <td>
+                               {{cl.dateofbirth}} 
+                            </td>
+                            <td>
+                              {{cl.contactnumber}}
+                            </td>
+
+                            <!-- <td class="text-right">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal" (click)="editReview(r)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" rel="tooltip" (click)="removeReview(r.id)" class="btn btn-danger btn-icon btn-sm ">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

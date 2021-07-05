@@ -1,0 +1,145 @@
+<div class="main-content">
+    <div class="card"  *ngIf="!isBankShow">
+        <div class="card-header">
+            <h4 class="card-title">Add Bank</h4>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal" name="bankRegForm" #bankRegForm="ngForm">
+                <div class="row">
+                    <label class="col-md-2 col-form-label">Enter Bank Name</label>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="bankname" name="bankname"
+                                [(ngModel)]="EmiModel.bankname" placeholder="Enter Bank Name">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer ">
+            <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-1">
+                    <button type="cancel" class="btn btn-round" (click)="closeAddBank()" >Cancel</button>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" (click)="addBankList()" class="btn btn-info btn-round">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header ">
+            <div class="row">
+                <div class="col-md-10">
+                <h4 class="card-title">Add EMI</h4></div>
+                <div class="col-md-2">
+                    <button type="submit"  class="btn btn-info btn-round" *ngIf="isBankShow" (click)="bankOpen()">Add new bank</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal" name="ROIForm" #ROIForm="ngForm">
+                <div class="row">
+                    <label class="col-sm-1 col-form-label">Select Bank</label>
+                    <div class="col-sm-3">
+                        <div class="dropdown form-group">
+                            <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
+                                name="dropdownMenuButton" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">{{selectedBank}}
+
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-header">Select Bank</div>
+                                <div *ngFor="let b of EMI">
+                                    <a class="dropdown-item" (click)="selectBankList(b.id)">{{b.bankname}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngFor="let add of addEmiFields;let ind=index">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3">
+                        <p class="card-title">EMI Month</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="months" name="months" [(ngModel)]="add.months"
+                                placeholder=" Enter Months">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="card-title">Enter Rate Of Intrest</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="intrest" name="intrest"
+                                [(ngModel)]="add.intrest" placeholder="Enter Rate Of Intrest">
+                        </div>
+                    </div>
+
+                    <div class="col-md-1">
+                        <i class="fa fa-plus-circle" aria-hidden="true" (click)="addEmiMonths()"
+                            style="font-size: 33px !important;margin-top:40%!important;"></i>
+                    </div>
+                    <div class="col-md-1" *ngIf="ind>0">
+                        <i class="fa fa-times-circle-o" aria-hidden="true" (click)="removeEmiMonths(ind)"
+                            style="font-size: 33px !important;margin-top:40%!important;margin-left: -80px !important;"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+               <div class="col-md-11"></div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-info btn-round" (click)="saveROIntrest(add)">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Bank with Rate Of Interest Table</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="text-primary">
+                        <th class="text-center">
+                            #
+                        </th>
+                        <th class="text-center">
+                            Bank Name
+                        </th>
+                        <th class="text-center">
+                            EMI Month
+                        </th>
+                        <th class="text-center">
+                            Rate Of Interest
+                        </th>
+                        <!-- <th class="text-right">
+                            Salary
+                        </th> -->
+                        <th class="text-right">
+                            Actions
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let r of roi;let i=index">
+                            <td class="text-center">{{i+1}}</td>
+                            <td class="text-center">{{r.bankname}}</td>
+                            <td class="text-center">{{r.months}} Months</td>
+                            <td class="text-center">{{r.intrest}} %</td>
+                            <td class="text-right">
+                                <!-- <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </button> -->
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm" (click)="removeEmi(r.id)">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

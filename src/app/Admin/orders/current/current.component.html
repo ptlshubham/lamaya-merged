@@ -1,0 +1,231 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Recent Order List</h4>
+            <div class="col-md-4 ml-auto">
+                <button type="submit" style="margin-top: -75px;" class="btn btn-info btn-round">
+                    Accept Selected</button>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th>#</th>
+                            <th>
+                                Customer Name
+                            </th>
+                            <th>
+                                Order Number
+                            </th>
+                            <th>Product Image</th>
+                            <th>
+                                Product Name
+                            </th>
+                            <th>
+                                Amount of Product
+                            </th>
+                            <th>Status</th>
+                            <th>
+                                Mode of Payment
+                            </th>
+                            <th>
+                                Order Date
+                            </th>
+                            <th class="text-right">
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ro of currentOrders;let i=index">
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>{{i+1}}</td>
+                            <td>{{ro.username}}</td>
+                            <td>
+                                {{ro.id}}
+                            </td>
+                            <td>
+                                <div class="img-container">
+                                    <img src="http://localhost:8090{{ro.productMainImage}}" alt="...">
+                                </div>
+                            </td>
+
+                            <td>
+                                {{ro.productName}}
+                            </td>
+                            <td>
+                                {{ro.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i>
+                            </td>
+                            <td>{{ro.status}}</td>
+                            <td>
+                                {{ro.modofpayment}}
+                            </td>
+                            <td>
+                                {{ro.orderdate | date}}
+                            </td>
+                            <td class="text-right">
+                                <button type="button" title="View" data-toggle="modal" data-target="#ordersModal"
+                                    class="btn btn-info" (click)="viewOrderDetails(ro,i)">View</button>
+                                <!-- <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal" (click)="acceptOrders(ro.id)">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                                    <i class="fa fa-times"></i>
+                                </button> -->
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ordersModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Order Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal" name="editOrdersForm" #editOrdersForm="ngForm">
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">#</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="index" name="index"
+                                            [(ngModel)]="Orderview.index" [ngModelOptions]="{standalone: true}" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Customer Name</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" id="username" name="username"  [(ngModel)]="Orderview.username" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Delivery Address</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="dilveryAddress"
+                                            name="dilveryAddress" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Orderview.userAdd" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">Product Name</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" 
+                                            id="productName" name="productName" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Orderview.brandName" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Product Image</label>
+                                <div class="col-sm-3">
+                                    <div class="img-container" style="max-width: 30% !important;">
+                                        <img src="http://localhost:8090{{Orderview.productMainImage}}">
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Product Price</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="Orderview.productPrice"  disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">Order Number</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Orderview.id"  disabled>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-1 col-form-label">Mode Of Payment</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="Orderview.modeofpayment" disabled>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-1 col-form-label">Order Date</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <!-- <input type="date" class="form-control" 
+                                            id="orderDate" [ngModelOptions]="{standalone: true}"   name="orderDate"> -->
+                                        <label>{{Orderview.orderdate | date}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">Transaction Id</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"  [(ngModel)]="Orderview.transactionid"  disabled>
+                                    </div>
+                                </div>
+
+                                <!-- <label class="col-sm-1 col-form-label">Mode Of Payment</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="" disabled>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-1 col-form-label">Order Date</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" 
+                                            id="orderDate" name="orderDate">
+                                    </div>
+                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-info btn-round" (click)="generateInvoicePDF()" ><i class="fa fa-file-pdf-o"></i> Invoice(PDF)</button>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal" (click)="acceptOrders(Orderview.id)">Accept</button>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-danger btn-round" data-dismiss="modal" (click)="rejectedOrders(Orderview.id)">Reject</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Shipments Order List</h4>
+            <div class="col-md-4 ml-auto">
+                <button type="submit" style="margin-top: -75px;" class="btn btn-info btn-round">
+                    Accept Selected</button>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th>#</th>
+                            <th>
+                                Customer Name
+                            </th>
+                            <th>
+                                Order Number
+                            </th>
+                            <th>Product Image</th>
+                            <th>
+                                Product Name
+                            </th>
+                            <th>
+                                Amount of Product
+                            </th>
+                            <th>Status</th>
+                            <th>
+                                Mode of Payment
+                            </th>
+                            <th>
+                                Order Date
+                            </th>
+                            <th class="text-right">
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ro of currentOrders;let i=index">
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>{{i+1}}</td>
+                            <td>{{ro.username}}</td>
+                            <td>
+                                {{ro.id}}
+                            </td>
+                            <td>
+                                <div class="img-container">
+                                    <img src="http://localhost:8090{{ro.productMainImage}}" alt="...">
+                                </div>
+                            </td>
+
+                            <td>
+                                {{ro.productName}}
+                            </td>
+                            <td>
+                                {{ro.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i>
+                            </td>
+                            <td>{{ro.status}}</td>
+                            <td>
+                                {{ro.modofpayment}}
+                            </td>
+                            <td>
+                                {{ro.orderdate | date}}
+                            </td>
+                            <td class="text-right">
+                                <button type="button" title="View" data-toggle="modal" data-target="#ordersStatusModal"
+                                    class="btn btn-info" (click)="viewOrdersDetails(ro,i)">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ordersStatusModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Order Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal" name="editOrdersStatusForm" #editOrdersForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <p>Order Number :<b> {{Orderview.id}}</b></p>
+                                    <p>Order Date :<b>{{Orderview.orderdate | date}}</b></p>
+                                    <p>Customer :<b>{{Orderview.username}}</b></p>
+                                    <p>Email :</p>
+                                    <p>Order Status:<b>{{Orderview.status}}</b></p>
+                                    <div class="dropdown form-group">
+                                        <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button"
+                                            name="dropdownMenuButton" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">{{selectedStatus}}
+            
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                            <div class="dropdown-header">Select Order Status</div>
+                                            <div *ngFor="let s of orderStatus">
+                                                <a class="dropdown-item" (click)="selectOrderStatus(s.name)">{{s.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-danger btn-round">Canacel Order</button>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal" (click)="saveOrderStatus()">Save</button>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

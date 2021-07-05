@@ -1,0 +1,137 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Search</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <label class="col-md-1 col-form-label">Select Date</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Select Date</p> -->
+                    <input class="form-control" placeholder="{{model}}" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        (click)="d.toggle()">
+                    <!-- <input type="text" class="form-control datepicker" value="10/05/2018"> -->
+                </div>
+                <label class="col-md-1 col-form-label">User Name</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Tracking number</p> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter User Name">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary btn-round" style="margin-top: -3px;">
+                        <i class="nc-icon nc-zoom-split" title="Search">Search</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Customer Review List</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>#</th>
+                            <th>
+                                User Name
+                            </th>
+                            <th>User Id
+                            </th>
+                            <th>
+                                Rating
+                            </th>
+                            <th>
+                                Comment
+                            </th>
+                            <th class="text-right">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let r of rating;let i=index">
+                        <tr  >
+                            <td> {{i+1}}</td>
+                            <td>{{r.username}}</td>
+                            <td>{{r.userid}}</td>
+                            <td>
+                               {{r.rating}} <i class="fa fa-star" title="Search"></i>
+                            </td>
+                            <td>
+                              {{r.comment}}
+                            </td>
+
+                            <td class="text-right">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal" (click)="editReview(r)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" rel="tooltip" (click)="removeReview(r.id)" class="btn btn-danger btn-icon btn-sm ">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Update Customer Reviews</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal" name="mainCateRegForm" #mainCateRegForm="ngForm">
+                            <div class="row">
+                                
+                                <label class="col-sm-4 col-form-label">User Name</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  id="username" name="username"
+                                        [(ngModel)]="editrating.username" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">User ID</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"  id="userid" name="userid"
+                                         [(ngModel)]="editrating.userid" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Rating</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="rating" name="rating"
+                                         [(ngModel)]="editrating.rating">
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Commment</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="4" cols="80" class="form-control textarea"
+                                    id="comment" name="comment"  [(ngModel)]="editrating.comment"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal"
+                        (click)="updateRatings(editrating)">Update Rating</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

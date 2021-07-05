@@ -1,0 +1,310 @@
+<div class="main-content">
+    <!-- Search Start -->
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Search</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <label class="col-md-1 col-form-label">Select Date</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Select Date</p> -->
+                    <input class="form-control" placeholder="{{model}}" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        (click)="d.toggle()">
+                    <!-- <input type="text" class="form-control datepicker" value="10/05/2018"> -->
+                </div>
+                <label class="col-md-1 col-form-label">Tracking number</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Tracking number</p> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Tracking number">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary btn-round" style="margin-top: -3px;">
+                        <i class="nc-icon nc-zoom-split" title="Search"> Search</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Shipments DataTable Start -->
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Completed Order List</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th>#</th>
+                            <th>
+                                Customer Name
+                            </th>
+                            <th>
+                                Order Number
+                            </th>
+                            <th >Product Image</th>
+                            <th>
+                                Product Name
+                            </th>
+                            <th>
+                                Amount of Product
+                            </th>
+                            <!-- <th>
+                                Mode of Payment
+                            </th> -->
+                            <th>
+                                Order Date
+                            </th>
+                            <th>
+                                Dilevered Date
+                            </th>
+                            <th >
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let co of completedOrders;let i=index">
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>{{i+1}}</td>
+                            <td>{{co.username}}</td>
+                            <td>
+                                {{co.id}}
+                            </td>
+                            <td>
+                                <div class="img-container">
+                                    <img src="http://localhost:8090{{co.productMainImage}}" alt="...">
+                                </div>
+                            </td>
+
+                            <td>
+                                {{co.productName}}
+                            </td>
+                            <td>
+                                {{co.productPrice}} <i class="fa fa-inr" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                {{co.orderdate | date}}
+                            </td>
+                            <td>
+                                {{co.deliverydate | date}}
+                            </td>
+                            <td>
+                                <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal">
+                                    <i class="fa fa-eye"></i>
+                                </button> 
+                                <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm 
+                                " (click)="requestReview()" >
+                                    <i class="fa fa-envelope"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Shipments DataTable End -->
+
+    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Completed Order</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal">
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">#</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="1" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Order Number</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="#158762" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Product Image</label>
+                                <div class="col-sm-3">
+                                    <div class="img-container" style="max-width: 50% !important;">
+                                        <img src="./assets/img/2.png" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">Product Name</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control"
+                                            value="LG 139 cm (55 inches) 4K UHD Smart LED TV" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Amount</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="49900 ₹" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Mode Of Payment</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="Cash On Dilevery" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <label class="col-sm-1 col-form-label">Order Date</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="13/03/2021" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Dilevered Date</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="23/03/2021" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 col-form-label">Tracking Number</label>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="S150R36" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- <div class="row">
+                            <label class="col-sm-1 col-form-label">Restock</label>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter New Stock">
+                                </div>
+                            </div>
+                         </div> -->
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-info btn-round" data-dismiss="modal"
+                                style="width: 141px;">Print</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger btn-round" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- View Button Popup Start -->
+    <!-- <div class="modal fade"  id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-notice">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <i class="nc-icon nc-simple-remove"></i>
+                    </button>
+                    <h5 class="modal-title" id="myModalLabel">Shipments</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="instruction">
+                        <form class="form-horizontal">
+                            <div class="row">
+                                <label class="col-sm-4 col-form-label">#</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="1" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Status</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="Dilevered" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Order Number</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="Sp421564" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Track Number</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="RC145S23" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Total Weight</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="300gms" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Date Shipped</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="23/3/2021" disabled>
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Date Delivered</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="{{model}}" (click)="d.toggle()"
+                                            name="dp" ngbDatepicker #d="ngbDatepicker">
+                                    </div>
+                                </div>
+                                <label class="col-sm-4 col-form-label">Mode of Payment</label>
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" value="COD" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Update Shipments</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- View Button Popup End -->
+
+</div>

@@ -1,0 +1,129 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Search</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <label class="col-md-1 col-form-label">Select Date</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Select Date</p> -->
+                    <input class="form-control" placeholder="{{model}}" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        (click)="d.toggle()">
+                    <!-- <input type="text" class="form-control datepicker" value="10/05/2018"> -->
+                </div>
+                <label class="col-md-1 col-form-label">Tracking number</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Tracking number</p> -->
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Tracking number">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary btn-round" style="margin-top: -3px;">
+                        <i class="nc-icon nc-zoom-split" title="Search"> Search</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Pending Order List</h4>
+            <div class="col-md-2 ml-auto">
+                <button type="submit" style="margin-top: -75px;" class="btn btn-info btn-round">
+                    Accept Selected</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th>
+                                Customer Name
+                            </th>
+                            <th>
+                                Order Number
+                            </th>
+                            <th class="text-center">Product Image</th>
+                            <th>
+                                Product Name
+                            </th>
+                            <th>
+                                Amount of Product
+                            </th>
+                            <th>
+                                Mode of Payment
+                            </th>
+                            <th>
+                                Order Date
+                            </th>
+                            <th class="text-right">
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                      </label>
+                                  </div>
+                            </td>
+                            <td>1</td>
+                            <td>Maitri Patel</td>
+                            <td>
+                                #158762
+                            </td>
+                            <td>
+                                <div class="img-container">
+                                    <img src="./assets/img/3.png" alt="...">
+                                </div>
+                            </td>
+
+                            <td>
+                                LG 6.2
+                            </td>
+                            <td>
+                                49900 <i class="fa fa-inr" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                COD
+                            </td>
+                            <td>
+                                13/03/2021
+                            </td>
+                            <td class="text-right">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm"
+                                    data-toggle="modal" data-target="#noticeModal">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                            <!-- <td class="text-right">
+                                <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

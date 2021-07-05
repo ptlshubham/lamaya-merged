@@ -1,0 +1,209 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Search</h4>
+            <div class="row">
+                <div class="col-md-2 ml-auto" style="margin-top: -57px;" >
+                    <button type="submit" class="btn btn-info btn-round" (click)="addVendors()">
+                        <i class="nc-icon nc-simple-add" ></i> Add Vendors</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <label class="col-md-1 col-form-label">Select Date</label>
+                <div class="col-md-3">
+                    <!-- <p class="card-title">Select Date</p> -->
+                    <input class="form-control" placeholder="{{model}}" name="dp" ngbDatepicker #d="ngbDatepicker"
+                        (click)="d.toggle()">
+                    <!-- <input type="text" class="form-control datepicker" value="10/05/2018"> -->
+                </div>
+                <!-- <label class="col-md-1 col-form-label">Tracking number</label>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Tracking number">
+                    </div>
+                </div> -->
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary btn-round" style="margin-top: -3px;">
+                        <i class="nc-icon nc-zoom-split" title="Search"> Search</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="isAdd">
+        <div class="card-header">
+            <h4 class="card-title">Add Vendors</h4>
+        </div>
+        <div class="card-body">
+            <form class="form-horizontal">
+                <div class="row">
+                    <label class="col-md-1 col-form-label">Name</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter Name">
+                        </div>
+                    </div>
+                    <label class="col-md-1 col-form-label">Email</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter Email">
+                        </div>
+                    </div>
+                    <label class="col-md-1 col-form-label">Contact Number</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter Contact Number">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-1 col-form-label">Company Name</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter Comapny Name">
+                        </div>
+                    </div>
+                    <label class="col-md-1 col-form-label">Company Address</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter Company Address">
+                        </div>
+                    </div>
+                    <label class="col-md-1 col-form-label">Manufacturer Name</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Enter Manufacturer Name">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-1 col-form-label">TIN Number</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter TIN Number">
+                        </div>
+                    </div>
+                    <label class="col-md-1 col-form-label">GST Number</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder=" Enter GST Number">
+                        </div>
+                    </div>
+                    <!-- <label class="col-md-1 col-form-label">Manufacturer Name</label>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Enter Manufacturer Name">
+                        </div>
+                    </div> -->
+                </div>
+                <br>
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-md-1 ml-auto">
+                    <button type="submit" class="btn btn-info btn-round" 
+                    (click)="saveVendor()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Vendor List</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-shopping">
+                    <thead class="">
+                        <tr>
+                            <th>
+                                <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox">
+                                    <span class="form-check-sign"></span>
+                                </label>
+                            </div>
+                        </th>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>
+                                Email
+                            </th>
+
+                            <th class="text-center">Contact Number</th>
+
+                            <th>
+                                Comapny Name
+                            </th>
+                            <th>
+                                Company Address
+                            </th>
+                            <th>
+                                Manufacturer Name
+                            </th>
+                            <th>
+                                TIN Number
+                            </th>
+                            <th>
+                                GST Number
+                            </th>
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>1</td>
+                            <td>Pranav</td>
+                            <td>
+                                pranavgoswami38@gmail.com
+                            </td>
+                            <td>
+                                8141952604
+                            </td>
+
+                            <td>
+                                Xyz 
+                            </td>
+                            <td>Anand</td>
+                            <td>
+                                920 <i class="fa fa-inr" aria-hidden="true"></i>
+                            </td>
+                            <td>
+                                Innovate Club
+                            </td>
+                            <td>
+                             TN1456S6
+                            </td>
+                            <td>
+                                ST558T45
+                            </td>
+
+                            <td>
+                                <button type="button" title="View" data-toggle="modal" data-target="#noticeModal"
+                                    class="btn btn-info">Restock</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
